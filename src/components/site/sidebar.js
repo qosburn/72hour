@@ -1,15 +1,10 @@
 import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
-import Resources from './Resources';
-import FunctionalComponentDemo from '../concepts/FunctionalComponentDemo';
-import JSXRules from './JSXRules';
-import State from '../concepts/State';
-import Effects from '../concepts/Effects';
-import PropsDemo from '../concepts/PropsDemo';
-import Hooks from '../concepts/Hooks';
-import TimePiecesApp from '../apps/timer-apps/TimePiecesApp';
-import NytApp from '../apps/nyt-app/NytApp';
+import Nasa from './Nasa';
+import Weather from './Weather';
+import Ticket from './Ticket';
+
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -18,32 +13,15 @@ const Sidebar = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
+
           <li>
-            <Link to="/functionalcomponent">Functional Component</Link>
+            <Link to="/weather">Weather</Link>
           </li>
           <li>
-            <Link to="/jsxrules">JSXRules</Link>
+            <Link to="/ticket">Ticket</Link>
           </li>
           <li>
-            <Link to="/state">useState</Link>
-          </li>
-          <li>
-            <Link to="/effects">Effects</Link>
-          </li>
-          <li>
-            <Link to="/propsdemo">Props Demo</Link>
-          </li>
-          <li>
-            <Link to="/hooks">Hooks</Link>
-          </li>
-          <li>
-            <Link to="/timepiecesapp">TimePiecesApp</Link>
-          </li>
-          <li>
-            <Link to="/nytapp">NewYorkTimeApp</Link>
-          </li>
-          <li>
-            <Link to="/resources">Resources</Link>
+            <Link to="/nasa">NASA</Link>
           </li>
         </ul>
       </div>
@@ -52,35 +30,19 @@ const Sidebar = () => {
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/resources">
-            <Resources />
+
+          <Route exact path="/weather">
+            <Weather />
           </Route>
+          <Route exact path="/ticket">
+            <Ticket />
+          </Route>
+          <Route exact path="/nasa">
+            <Nasa />
+          </Route>
+
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route exact path="/jsxrules">
-            <JSXRules />
-          </Route>
-          <Route exact path="/functionalcomponent">
-            <FunctionalComponentDemo />
-          </Route>
-          <Route exact path="/state">
-            <State />
-          </Route>
-          <Route exact path="/effects">
-            <Effects />
-          </Route>
-          <Route exact path="/propsdemo">
-            <PropsDemo />
-          </Route>
-          <Route exact path="/hooks">
-            <Hooks />
-          </Route>
-          <Route exact path="/timepiecesapp">
-            <TimePiecesApp />
-          </Route>
-          <Route exact path="/nytapp">
-            <NytApp />
           </Route>
         </Switch>
       </div>
