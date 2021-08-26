@@ -6,12 +6,12 @@ import Sidebar from './components/site/sidebar';
 import Header from './components/site/Header';
 import Footer from './components/site/Footer';
 
-function App() {
+function App(props) {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
 
-  const getLocation = () => {
+  const getLocation = (props) => {
     if (!navigator.geolocation) {
       setStatus('Geolocation is not supported by your browser');
     } else {
