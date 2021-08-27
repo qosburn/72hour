@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-const Weather = () => {
+const Weather = (props) => {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
+  const [temp, setTemp] = useState("");
+  const [cel, setCel] = useState("");
   const [status, setStatus] = useState(null);
-  const [weather, setWeather] = useState("");
   const [results, setResults] = useState("");
 
   const getLocation = () => {
@@ -26,17 +27,21 @@ const Weather = () => {
   };
 
   const fetchResults = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lng}&cnt=5&unit=metric&appid=a3691ed1a5abc269ba8a795db3543b74`;
+    let url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lng}&cnt=5&appid=a3691ed1a5abc269ba8a795db3543b74`;
     const response = await fetch(url);
     const data = await response.json();
-    let weatherKeys = Object.keys(data.list);
-    let weatherValues = Array.prototype.values(data.list);
-    for (const value of weatherValues) {
-      console.log(weatherValues);
-      // console.log(weatherValues);
-      // setResults(weatherValues);
-    }
+    setTemp((data.list[1].main.temp - 273.15) * 9/5 + 32);
+    setCel(data.list[1].main.temp - 273.15);
+    setResults((data.list[1].main.temp - 273.15) * 9/5 + 32);
   };
+
+  const handleClick = (e) => {
+    if (results === temp) {
+      setResults(cel);
+    } else {
+      setResults(temp);
+    }
+  }
 
   useEffect(() => {
     getLocation();
@@ -52,11 +57,8 @@ const Weather = () => {
     <div className="main">
       <div className="mainDiv">
         <h1>Weather API</h1>
-        <h1>Coordinates</h1>
-        <p>{status}</p>
-        {lat && <p>Latitude: {lat}</p>}
-        {lng && <p>Longitude: {lng}</p>}
-        {results}
+        {status}
+        {results} <button onClick={handleClick}>Convert</button>
       </div>
     </div>
   );
