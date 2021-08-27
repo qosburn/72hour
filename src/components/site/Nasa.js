@@ -32,7 +32,7 @@ const Nasa = (props) => {
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>NASA API</h1>
+        <h1>Nasa api</h1>
         <p>Prop Name{props.lng}</p>
         <p>Prop Name{props.lat}</p>
         <p>
