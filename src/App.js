@@ -33,7 +33,7 @@ function App() {
         {location.latitude && <p>Latitude: {location.latitude}</p>}
         {location.longitude && <p>Longitude: {location.longitude}</p>}
       </div>
-      <Nasa lat={location.latitude} lng={location.longitude} />
+      {/* <Nasa lat={location.latitude} lng={location.longitude} /> */}
       <Footer />
     </div>
   );
