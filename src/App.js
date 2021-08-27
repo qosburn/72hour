@@ -1,47 +1,39 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './components/site/sidebar';
 import Header from './components/site/Header';
 import Footer from './components/site/Footer';
+import Nasa from './components/site/Nasa';
 
-function App(props) {
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [status, setStatus] = useState(null);
+function App() {
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
+  const [status, setStatus] = useState(' ');
 
-  const getLocation = (props) => {
-    if (!navigator.geolocation) {
-      setStatus('Geolocation is not supported by your browser');
-    } else {
-      setStatus('Locating...');
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setStatus(null);
-          setLat(position.coords.latitude);
-          setLng(position.coords.longitude);
-        },
-        () => {
-          setStatus('Unable to retrieve your location');
-        }
-      );
-    }
-  };
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+  }, []);
+
   return (
     <div>
       <Header />
       <Router>
-        <Sidebar />
+        <Sidebar lat={location.latitude} lng={location.longitude} />
       </Router>
       <div className="App">
-        <button onClick={getLocation}>Find your Location</button>
         <h1>Coordinates</h1>
         <p>{status}</p>
-        {lat && <p>Latitude: {lat}</p>}
-        {lng && <p>Longitude: {lng}</p>}
+        {location.latitude && <p>Latitude: {location.latitude}</p>}
+        {location.longitude && <p>Longitude: {location.longitude}</p>}
       </div>
-
+      <Nasa lat={location.latitude} lng={location.longitude} />
       <Footer />
     </div>
   );

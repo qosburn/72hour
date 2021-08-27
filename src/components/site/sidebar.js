@@ -5,7 +5,7 @@ import Nasa from './Nasa';
 import Weather from './Weather';
 import Ticket from './Ticket';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="sidebar-list-styling">
@@ -28,17 +28,17 @@ const Sidebar = () => {
       <div className="sidebar-route">
         <Switch>
           <Route exact path="/home">
-            <Home />
+            <Home lat={props.lat} lng={props.lng} />
           </Route>
 
           <Route exact path="/weather">
-            <Weather />
+            <Weather lat={props.lat} lng={props.lng} />
           </Route>
           <Route exact path="/ticket">
-            <Ticket />
+            <Ticket lat={props.lat} lng={props.lng} />
           </Route>
           <Route exact path="/nasa">
-            <Nasa />
+            <Nasa lat={props.lat} lng={props.lng} />
           </Route>
 
           <Route exact path="/">
