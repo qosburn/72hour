@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Nasa = () => {
+const baseURL = 'https://api.nasa.gov/planetary/earth/assets';
+const key = 'zDarXJV81X6UjpWC5iSMgQ1LgITXvWxEytbSpVCR';
+const dim = '0.05';
+
+const Nasa = (props) => {
+  const [results, setResults] = useState([]);
+
+  const current = new Date();
+
+  const date = `${current.getFullYear()}-${current.getMonth()}-${current.getDate()}`;
+
+  const url = `${baseURL}?lon=${props.lng}&lat=${props.lat}&date=${date}&dim=${dim}&api_key=${key}`;
+  const fetchURL = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setResults(data.url);
+  };
+
+  useEffect(() => {
+    fetchURL();
+  }, [props.lat, props.lng]);
+
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>NASA API</h1>
-        <p>Nasa stuff</p>
-        <ul>
-          <li>
-            <a
-              href="https://reactjs.org/docs/getting-started.html"
-              target="_blank"
-            >
-              NASA
-            </a>
-          </li>
-        </ul>
+        <h1>Nasa API</h1>
+
+        <h2>This is a satellite pictures of your location from space.</h2>
+        <p>
+          <img src={results} width="450px" alt="tat map" />
+        </p>
       </div>
     </div>
   );

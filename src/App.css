@@ -79,3 +79,14 @@ ul {
 .header p {
   margin-top: 0.8em !important;
 }
+
+h1 {
+  position: relative;
+  text-align: center;
+}
+
+h2 {
+  position: relative;
+  text-align: center;
+}
+
