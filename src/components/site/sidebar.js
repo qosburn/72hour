@@ -27,7 +27,7 @@ const Sidebar = (props) => {
       </div>
       <div className="sidebar-route">
         <Switch>
-          <Route exact path="/home">
+          <Route exact path="/">
             <Home lat={props.lat} lng={props.lng} />
           </Route>
 
@@ -41,9 +41,9 @@ const Sidebar = (props) => {
             <Nasa lat={props.lat} lng={props.lng} />
           </Route>
 
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home />
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </div>

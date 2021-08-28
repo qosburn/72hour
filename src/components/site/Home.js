@@ -9,7 +9,7 @@ const Home = (props) => {
         <h1>Our 72 hours PROJECT </h1>
         <p>Welcome to 72 hours of getting stuff done</p>
         <hr />
-        {/* <Nasa lat={props.lat} lng={props.lng} /> */}
+        <Nasa lat={props.lat} lng={props.lng} />
       </div>
     </div>
   );

@@ -27,12 +27,12 @@ function App() {
       <Router>
         <Sidebar lat={location.latitude} lng={location.longitude} />
       </Router>
-      <div className="App">
+      {/* <div className="App">
         <h1>Coordinates</h1>
         <p>{status}</p>
         {location.latitude && <p>Latitude: {location.latitude}</p>}
         {location.longitude && <p>Longitude: {location.longitude}</p>}
-      </div>
+      </div> */}
       {/* <Nasa lat={location.latitude} lng={location.longitude} /> */}
       <Footer />
     </div>
