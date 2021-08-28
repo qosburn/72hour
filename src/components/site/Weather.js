@@ -23,7 +23,9 @@ const Weather = (props) => {
   }
 
   useEffect(() => {
-    fetchResults();
+    if (props.lat && props.lng) {
+      fetchResults();
+    }
   }, [props.lat, props.lng]);
 
   return (
