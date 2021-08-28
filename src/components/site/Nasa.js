@@ -1,3 +1,4 @@
+// import React from 'react';
 import React, { useState, useEffect } from 'react';
 
 const baseURL = 'https://api.nasa.gov/planetary/earth/assets';
@@ -6,6 +7,7 @@ const dim = '0.05';
 
 const Nasa = (props) => {
   const [results, setResults] = useState([]);
+  const [status, setStatus] = useState(null);
 
   const current = new Date();
 
@@ -19,15 +21,15 @@ const Nasa = (props) => {
   };
 
   useEffect(() => {
-    fetchURL();
+    if (props.lat && props.lng) {
+      fetchURL();
+    }
   }, [props.lat, props.lng]);
 
   return (
     <div className="main">
       <div className="mainDiv">
-        <h2>Nasa API</h2>
-
-        <h3>This is a satellite pictures of your location from space.</h3>
+        <h2>This is a satellite pictures of your location from space.</h2>
         <p>
           <img src={results} width="450px" alt="tat map" />
         </p>

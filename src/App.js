@@ -9,11 +9,9 @@ import Nasa from './components/site/Nasa';
 
 function App() {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
-  const [status, setStatus] = useState(' ');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
       setLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
