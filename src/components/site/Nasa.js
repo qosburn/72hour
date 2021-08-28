@@ -34,7 +34,7 @@ const Nasa = (props) => {
       <div className="mainDiv">
         <h1>Nasa API</h1>
 
-        <p>This is a satellite pictures of your location from space.</p>
+        <h2>This is a satellite pictures of your location from space.</h2>
         <ul>
           <li>
             Latitude:
