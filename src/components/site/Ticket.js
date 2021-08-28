@@ -1,38 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 const Ticket = (props) => {
-  // const [location, setLocation] = useState("");
-  // const [events, setEvents] = useState("");
-//   const [search, setSearch] = useState("");
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
-  // const fetchLocation = () => {
-  //     fetch('http://localhost:3000/location', {
-  //         method: 'GET',
-  //         headers: new Headers ({
-  //             'Content-Type': 'application/json',
-  //             'Authorization' : props.token
-  //         })
-  //     }).then((res) => res.json())
-  //     .then((logData) => {
-  //         setLocation(logData)
-  //     })
-  // }
-
-  useEffect(() => {
-      getLocation();
-  }, [])
-
-  useEffect(() => {
-    if (lat && lng) {
-      fetchResults();
-    }
-  }, [lat, lng])
-
-  useEffect(() => {
-    fetchResults1();
-  })
+  const [results, setResults] = useState("");
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -54,52 +26,35 @@ const Ticket = (props) => {
 
   const fetchResults = async () => {
     const response = await fetch(
-      `https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=0gZLnqkxaBK4KxfowakikVZzUGIK3wpv&latlong=${lat},${lng}`
-    )
+      `https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=0gZLnqkxaBK4KxfowakikVZzUGIK3wpv&latlong=${props.lat},${props.lng}`
+    );
     const data = await response.json();
-    console.log(data)
-    
+    console.log(data);
+    setResults(data._embedded.events[0].name);
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   fetchResults();
-  // };
+  useEffect(() => {
+    getLocation();
+  }, []);
 
-  // const fetchResults1 = async () => {
-  //   const response = await fetch(
-  //     `https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8c-bee4-214ea0a81c62_1339761_CUSTOM.jpg?apikey=0gZLnqkxaBK4KxfowakikVZzUGIK3wpv`
-  //   )
-  //   const data = await response.json();
-  //   console.log(data)
-  // };
-
-
-
-  
-
-  
-
-    // const fetchResults = async () => {
-    //   const response = await fetch (
-    //    `https://app.ticketmaster.com/discovery/v2/attractions?apikey=0gZLnqkxaBK4KxfowakikVZzUGIK3wpv`
-    //   )
-    //   const data = await response.json();
-    //   console.log(data)
-    // }
-
+  useEffect(() => {
+    if (props.lat && props.lng) {
+      fetchResults();
+    }
+  }, [props.lat, props.lng]);
 
   return (
     <div className="main">
       <div className="mainDiv">
         <h1>Ticket Master</h1>
-            <h1>Coordinates</h1>
-            <h2>Event</h2>
-            <p>{status}</p>
-            {lat && <p>Latitude: {lat}</p>}
-            {lng && <p>Longitude: {lng}</p>}
-          </div>
+        <h2>Event</h2>
+        <h3>Coordinates</h3>
+        <p>{status}</p>
+        {props.lat && <p>Latitude: {props.lat}</p>}
+        {props.lng && <p>Longitude: {props.lng}</p>}
+        {results}
       </div>
+    </div>
   );
 };
 
