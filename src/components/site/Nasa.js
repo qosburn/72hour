@@ -25,9 +25,9 @@ const Nasa = (props) => {
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>Nasa API</h1>
+        <h2>Nasa API</h2>
 
-        <h2>This is a satellite pictures of your location from space.</h2>
+        <h3>This is a satellite pictures of your location from space.</h3>
         <p>
           <img src={results} width="450px" alt="tat map" />
         </p>

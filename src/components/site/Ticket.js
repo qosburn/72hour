@@ -20,8 +20,8 @@ const Ticket = (props) => {
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>Ticket Master</h1>
-        <h2>Event</h2>
+        <h2>Ticket Master</h2>
+        <h3>Event</h3>
         {results}
       </div>
     </div>

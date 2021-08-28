@@ -7,7 +7,7 @@ const Home = (props) => {
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>Our 72 hours Project</h1>
+        <h1>72 Hour Project</h1>
         <Ticket lat={props.lat} lng={props.lng} />
         <hr />
         <Weather lat={props.lat} lng={props.lng} />

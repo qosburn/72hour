@@ -31,7 +31,7 @@ const Weather = (props) => {
   return (
     <div className="main">
       <div className="mainDiv">
-        <h1>Weather API</h1>
+        <h2>Weather API</h2>
         The temperature is {results} degrees. <button onClick={handleClick}>Convert</button>
       </div>
     </div>
